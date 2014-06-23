@@ -41,12 +41,9 @@ This is how to use it in the puppet manifest::
 List of supported parameters
 -----------------------------
 
-+----------------+-----------------------------+
+| Parameter      | Value                       |
+| ---------------|-----------------------------|
 | mysql_distro   | community, mariadb, percona |
-+----------------+-----------------------------+
 | mysql_version  | 5.5, 5.6, 5.7, 10           |
-+----------------+-----------------------------+
 | galera_version | 2, 3                        |
-+----------------+-----------------------------+
 | bootstrap      | To bootstrap the cluster    |
-+----------------+-----------------------------+
