@@ -44,6 +44,21 @@ List of supported parameters
 | Parameter      | Value                       |
 | ---------------|-----------------------------|
 | mysql_distro   | community, mariadb, percona |
-| mysql_version  | 5.5, 5.6, 5.7, 10           |
+| mysql_version  | 5.5, 5.6, 5.7, 10.0         |
 | galera_version | 2, 3                        |
 | bootstrap      | To bootstrap the cluster    |
+
+
+Server vs Cluster
+-----------------
+
+To install the server version, you need to add this line in the manifest::
+
+        include mysql::server
+
+And to install a cluster node::
+        
+        include mysql::cluster
+
+Cluster can be used with percona and mariadb mysql_distro.
+
