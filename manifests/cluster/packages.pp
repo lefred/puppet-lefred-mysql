@@ -3,14 +3,13 @@ class mysql::cluster::packages {
   if  $mysql::mysql_distro == "mariadb" {
         $packs = [ "MariaDB-Galera-server", rsync ]
         $mysql_bin = "mysql"
-        $require_pack = undef 
+        $packs_galera = undef 
   } elsif  $mysql::mysql_distro == "percona" {
         $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "Percona-Server-shared-compat", "rsync" ]
         $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}" ]
         $mysql_bin = "mysql"
         info("packs_galera: $packs_galera")
         info("packs: $packs")
-        $require_pack="Package['$packs_galera']"
         info("require_pack: $require_pack")
         package {
             $packs_galera:
@@ -23,7 +22,7 @@ class mysql::cluster::packages {
 
   package {
         $packs:
-                    require => [ Yumrepo['mysql-repo'], $require_pack ],
+                    require => [ Yumrepo['mysql-repo'], Package[$packs_galera] ],
                     ensure  => "installed";
   }
 
