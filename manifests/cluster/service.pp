@@ -1,7 +1,7 @@
 class mysql::cluster::service ($ensure="running", $bootstrap=False) {
         
    	if ($bootstrap == True)   {
-            if ($mysql::distro == "percona") {
+            if ($mysql::mysql_distro == "percona") {
         	    $service_start = "service mysql bootstrap-pxc"
             } else {
         	    $service_start = "service mysql bootstrap"
