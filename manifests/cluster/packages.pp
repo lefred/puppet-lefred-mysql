@@ -20,7 +20,7 @@ class mysql::cluster::packages {
 
   package {
         $packs:
-                    require => $require;
+                    require => $require,
                     ensure  => "installed";
   }
 
