@@ -8,7 +8,10 @@ class mysql::cluster::packages {
         $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "Percona-Server-shared-compat", "rsync" ]
         $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}" ]
         $mysql_bin = "mysql"
+        info("packs_galera: $packs_galera")
+        info("packs: $packs")
         $require_pack="Package['$packs_galera']"
+        info("require_pack: $require_pack")
         package {
             $packs_galera:
                     require => Yumrepo['mysql-repo'],
