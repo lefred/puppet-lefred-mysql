@@ -3,7 +3,7 @@ class mysql::cluster::packages {
   if  $mysql::mysql_distro == "mariadb" {
         $packs = [ "MariaDB-Galera-server", rsync ]
         $mysql_bin = "mysql"
-        $packs_galera = undef 
+        $packs_galera = "" 
   } elsif  $mysql::mysql_distro == "percona" {
         $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "Percona-Server-shared-compat", "rsync" ]
         $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}" ]
