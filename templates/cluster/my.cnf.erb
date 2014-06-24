@@ -5,7 +5,7 @@ log_error=<%= hostname %>_error.log
 binlog_format=ROW
 wsrep_provider=/usr/lib64/libgalera_smm.so
 wsrep_cluster_address=gcomm://192.168.90.2,192.168.90.3,192.168.90.4
-wsrep_node_address=<%= ipaddress_eth1 %>
+wsrep_node_address=<%= scope.lookupvar('mysql::mysql_ip') %>
 wsrep_slave_threads=2
 wsrep_cluster_name=LefredPXC
 #wsrep_sst_method=rsync
@@ -16,7 +16,7 @@ wsrep_node_name=<%= hostname %>
 innodb_locks_unsafe_for_binlog=1
 innodb_autoinc_lock_mode=2
 innodb_log_file_size=64M
-bind-address=<%= ipaddress_eth1 %>
+bind-address=<%= scope.lookupvar('mysql::mysql_ip') %>
 innodb_file_per_table=1
 log_slave_updates
 <% if has_variable?("mysql_version") and mysql_version.to_s == "5.6" then %>
