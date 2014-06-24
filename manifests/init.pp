@@ -16,6 +16,9 @@ class mysql ($mysql_distro="community", $mysql_version="5.5", $mysql_serverid=un
 
 
         $mysql_ip = inline_template("<% scope.lookupvar('::ipaddress_${mysql_bind_interface}') -%>")
+        info("Interface to use = $mysql_bind_interface")
+        info("Its IP is $mysql_ip")
+
 
 
         include mysql::repository
