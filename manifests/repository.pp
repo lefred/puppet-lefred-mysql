@@ -21,7 +21,13 @@ class mysql::repository {
             descr       => $repo_descr,
             enabled     => 1,
             baseurl     => $repo_url,
-            gpgcheck    => 0,
+            gpgcheck    => 0;
+     "epel":
+            descr       => "Extra Packages for Enterprise Linux $releasever - $basearch",
+            enabled     => 1,
+            baseurl     => "http://download.fedoraproject.org/pub/epel/$releasever/$basearch",
+            gpgcheck    => 0;
+
  }
 
 }
