@@ -21,7 +21,7 @@ class mysql::cluster::packages {
                	$require_loc = Yumrepo['mysql-repo'] 
           }
           'Debian': {
-                $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_version}", "Percona-XtraDB-Cluster-client-${mysql::mysql_version}", "rsync" ]
+                $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_version}", "Percona-XtraDB-Cluster-client-${mysql::mysql_version}", "rsync", "qpress" ]
                 $packs_galera = "Percona-XtraDB-Cluster-galera-${mysql::galera_version}.x"
 		$require = Package[$packs_galera]
 		$require_loc = Apt::Source['mysql-repo']
