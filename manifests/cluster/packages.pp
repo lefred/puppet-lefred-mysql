@@ -12,15 +12,23 @@ class mysql::cluster::packages {
           }
         }
   } elsif  $mysql::mysql_distro == "percona" {
-        $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "rsync", "qpress" ]
         $mysql_bin = "mysql"
         case $::osfamily {
     	  'RedHat': {
+                $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "rsync", "qpress" ]
                 $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}", "Percona-Server-shared-compat" ]
                 $require = [ Package[$packs_galera], Yumrepo['epel'] ]
                	$require_loc = Yumrepo['mysql-repo'] 
           }
           'Debian': {
+                if $mysql::mysql_ver == "5.6" {
+                  $pxc_server = "percona-xtradb-cluster-server"
+                  $pxc_client = "percona-xtradb-cluster-client"
+                } else {
+                  $pxc_server = "percona-xtradb-cluster-server-${mysql::mysql_ver}"
+                  $pxc_client = "percona-xtradb-cluster-client-${mysql::mysql_ver}"
+                }
+                $packs = [ $pxc_server, pxc_client, "rsync", "qpress" ]
                 $packs_galera = "Percona-XtraDB-Cluster-galera-${mysql::galera_version}.x"
 		$require = Package[$packs_galera]
 		$require_loc = Apt::Source['mysql-repo']
