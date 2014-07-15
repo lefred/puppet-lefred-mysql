@@ -43,7 +43,8 @@ class mysql::repository {
 	    $repo_key_source = false
  	} elsif $mysql::mysql_distro == "mariadb" {
             $repo_descr      = "MariaDB ${mysql_ver}"
-            $repo_url        =  "http://mariadb.cu.be//repo/${mysql::mysql_version}/${lsbdistid.downcase}"
+            $repo_lsbdistid  = downcase($lsbdistid)
+            $repo_url        =  "http://mariadb.cu.be//repo/${mysql::mysql_version}/${repo_lsbdistid}"
             $repo_repos      = "main"
             $repo_release    = $lsbdistcodename 
 	    $repo_key	     = "0xcbcb082a1bb943db" 
