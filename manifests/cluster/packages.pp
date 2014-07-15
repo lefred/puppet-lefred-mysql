@@ -25,6 +25,21 @@ class mysql::cluster::packages {
                 $packs_galera = "Percona-XtraDB-Cluster-galera-${mysql::galera_version}.x"
 		$require = Package[$packs_galera]
 		$require_loc = Apt::Source['mysql-repo']
+
+
+		file { 
+			"/usr/sbin/policy-rc.d":
+				source => "puppet:///modules/puppet-lefred-mysql/policy-rc.d",
+				mode => "a+x",
+				ensure => present,
+		}
+		exec {
+			"delete policy-rc.d":
+				command => "rm /usr/sbin/policy-rc.d",
+				path => ["/usr/bin", "/bin" ],
+				provider => shell,
+				onlyif => ["test -f /usr/sbin/policy-rc.d" ]
+		}
           }
         }
         package {
