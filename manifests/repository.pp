@@ -65,10 +65,9 @@ class mysql::repository {
 			repos		=> $repo_repos,
 			key		=> $repo_key,
 			key_source	=> $repo_key_source,
-			include_src	=> false,
+			include_src	=> false
         }
 
     }  
-
+  }
 }
-
