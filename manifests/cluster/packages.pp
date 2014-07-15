@@ -33,13 +33,13 @@ class mysql::cluster::packages {
 				mode => "a+x",
 				ensure => present,
 		}
-		exec {
-			"delete policy-rc.d":
-				command => "rm /usr/sbin/policy-rc.d",
-				path => ["/usr/bin", "/bin" ],
-				provider => shell,
-				onlyif => ["test -f /usr/sbin/policy-rc.d" ]
-		}
+		#exec {
+		#	"delete policy-rc.d":
+		#		command => "rm /usr/sbin/policy-rc.d",
+		#		path => ["/usr/bin", "/bin" ],
+		#		provider => shell,
+		#		onlyif => ["test -f /usr/sbin/policy-rc.d" ]
+		#}
           }
         }
         package {
