@@ -3,11 +3,6 @@ class mysql::cluster::config  {
         $mysql_version          = $mysql::mysql_version
         $mysqlserverid          = $mysql::mysql_serverid
 
-        file {
-                "/etc/my.cnf":
-                        ensure  => present,
-                        content => template("mysql/cluster/my.cnf.erb"),
-        }
        
         case $::osfamily {
           'RedHat': {
@@ -17,7 +12,17 @@ class mysql::cluster::config  {
                         	command => "echo 0 >/selinux/enforce",
                         	unless => "grep 0 /selinux/enforce",
         	}
-	   }
+
+	       $my_file="/etc/my.cnf"
+	  }
+          'Debian': {
+	       $my_file="/etc/mysql/my.cnf"
+          }
         }
 
+        file {
+                "/etc/my.cnf":
+                        ensure  => present,
+                        content => template("mysql/cluster/my.cnf.erb"),
+        }
 }
