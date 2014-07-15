@@ -21,7 +21,7 @@ class mysql::cluster::config  {
         }
 
         file {
-                "/etc/my.cnf":
+                $my_file:
                         ensure  => present,
                         content => template("mysql/cluster/my.cnf.erb"),
         }
