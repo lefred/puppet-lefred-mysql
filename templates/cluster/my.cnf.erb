@@ -6,7 +6,7 @@ binlog_format=ROW
 
 <% if @osfamily == "RedHat" then %>
 wsrep_provider=/usr/lib64/libgalera_smm.so
-<%else then %>
+<% else %>
 wsrep_provider=/usr/lib/libgalera_smm.so
 <% end %>
 wsrep_cluster_address=gcomm://192.168.90.2,192.168.90.3,192.168.90.4
