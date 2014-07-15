@@ -23,7 +23,7 @@ class mysql::cluster::packages {
           'Debian': {
 		$require = Package[$packs_galera]
 		$require_loc = Apt::Source['mysql-repo']
-                $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}".x ]
+                $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}.x" ]
           }
         }
         package {
