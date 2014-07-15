@@ -16,14 +16,14 @@ class mysql::cluster::packages {
         $mysql_bin = "mysql"
         case $::osfamily {
     	  'RedHat': {
+                $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}", "Percona-Server-shared-compat" ]
                 $require = [ Package[$packs_galera], Yumrepo['epel'] ]
                	$require_loc = Yumrepo['mysql-repo'] 
-                $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}", "Percona-Server-shared-compat" ]
           }
           'Debian': {
+                $packs_galera = "Percona-XtraDB-Cluster-galera-${mysql::galera_version}.x"
 		$require = Package[$packs_galera]
 		$require_loc = Apt::Source['mysql-repo']
-                $packs_galera = "Percona-XtraDB-Cluster-galera-${mysql::galera_version}.x"
           }
         }
         package {
