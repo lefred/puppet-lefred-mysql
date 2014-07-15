@@ -21,7 +21,7 @@ class mysql::cluster::packages {
                	$require_loc = Yumrepo['mysql-repo'] 
           }
           'Debian': {
-                if $mysql::mysql_ver == "5.6" {
+                if $mysql::mysql_ver == "56" {
                   $pxc_server = "percona-xtradb-cluster-server"
                   $pxc_client = "percona-xtradb-cluster-client"
                 } else {
