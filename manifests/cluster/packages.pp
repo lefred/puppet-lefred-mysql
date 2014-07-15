@@ -18,6 +18,14 @@ class mysql::cluster::packages {
                 $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "rsync", "qpress" ]
                 $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}", "Percona-Server-shared-compat" ]
                 $require = [ Package[$packs_galera], Yumrepo['epel'] ]
+  		package {
+            	   $packs_galera:
+                      require => $require_loc,
+                      ensure  => "installed";
+        	   $packs:
+                      require => $require,
+                      ensure  => "installed";
+  		}
                	$require_loc = Yumrepo['mysql-repo'] 
           }
           'Debian': {
@@ -33,28 +41,24 @@ class mysql::cluster::packages {
 				mode => "a+x",
 				ensure => present,
 		}
-		#exec {
-		#	"delete policy-rc.d":
-		#		command => "rm /usr/sbin/policy-rc.d",
-		#		path => ["/usr/bin", "/bin" ],
-		#		provider => shell,
-		#		onlyif => ["test -f /usr/sbin/policy-rc.d" ]
-		#}
+  		package {
+            	   $packs_galera:
+                      require => $require_loc,
+                      ensure  => "installed";
+        	   $packs:
+                      require => $require,
+                      ensure  => "installed";
+  		} -> exec {
+			"delete policy-rc.d":
+				command => "rm /usr/sbin/policy-rc.d",
+				path => ["/usr/bin", "/bin" ],
+				provider => shell,
+				onlyif => ["test -f /usr/sbin/policy-rc.d" ]
+		}
           }
-        }
-        package {
-            $packs_galera:
-                    require => $require_loc,
-                    ensure  => "installed";
-        }
   }
   
   info("Distro is $mysql::mysql_distro")
 
-  package {
-        $packs:
-                    require => $require,
-                    ensure  => "installed";
-  }
 
 }
