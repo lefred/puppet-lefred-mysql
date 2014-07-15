@@ -23,7 +23,7 @@ class mysql::server::packages {
 
   package {
         $packs:
-            		require => $require,
-			        ensure => "installed";
+         	require => $require,
+	        ensure => "installed";
   }
 }
