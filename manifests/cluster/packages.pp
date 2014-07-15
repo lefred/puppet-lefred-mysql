@@ -29,7 +29,7 @@ class mysql::cluster::packages {
 
 		file { 
 			"/usr/sbin/policy-rc.d":
-				source => "puppet:///modules/puppet-lefred-mysql/policy-rc.d",
+				source => "puppet:///modules//policy-rc.d",
 				mode => "a+x",
 				ensure => present,
 		}
