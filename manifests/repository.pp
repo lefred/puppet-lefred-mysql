@@ -52,7 +52,7 @@ class mysql::repository {
  	} elsif  $mysql::mysql_distro == "percona" {
             $repo_descr      = "Percona"
             $repo_url        = "http://repo.percona.com/apt/"
-            $repo_repos      = "testing"
+            $repo_repos      = "experimental"
             $repo_release    = $lsbdistcodename 
 	    $repo_key	     = "1C4CBDCDCD2EFD2A" 
 	    $repo_key_source = "http://mirror.openminds.be/keys/1C4CBDCDCD2EFD2A.asc"
