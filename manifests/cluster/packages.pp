@@ -56,6 +56,7 @@ class mysql::cluster::packages {
 				onlyif => ["test -f /usr/sbin/policy-rc.d" ]
 		}
           }
+     }
   }
   
   info("Distro is $mysql::mysql_distro")
