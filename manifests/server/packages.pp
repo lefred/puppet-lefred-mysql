@@ -25,6 +25,7 @@ class mysql::server::packages {
               "Percona-Server-shared-compat":
                     require =>  Yumrepo['mysql-repo'], 
                     ensure  => "installed";
+            }
            }
            'Debian': {
              $packs = [ "Percona-Server-server-${mysql::mysql_version}", "Percona-Server-client-${mysql::mysql_version}" ]
