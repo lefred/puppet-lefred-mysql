@@ -20,7 +20,7 @@ class mysql::server::packages {
         case $::osfamily {
           'RedHat': {
             $packs = [ "Percona-Server-server-${mysql::mysql_ver}", "Percona-Server-client-${mysql::mysql_ver}" ]
-            $require = Package["Percona-Server-shared-compat"]
+            $require = [ Yumrepo['mysql-repo'], Package["Percona-Server-shared-compat"] ]
             package {
               "Percona-Server-shared-compat":
                     require =>  Yumrepo['mysql-repo'], 
@@ -29,12 +29,7 @@ class mysql::server::packages {
            }
            'Debian': {
              $packs = [ "Percona-Server-server-${mysql::mysql_version}", "Percona-Server-client-${mysql::mysql_version}" ]
-             $require_loc = Apt::Source['mysql-repo']
-             package {
-                $packs:
-                      require => $require,
-                      ensure  => "installed";
-             }
+             $require = Apt::Source['mysql-repo']
            }
         }
   }
