@@ -15,6 +15,5 @@ class mysql::config {
         logoutput => true,
         unless    => "mysqladmin -u root -p'${root_password}' status > /dev/null",
         path      => '/usr/local/sbin:/usr/bin:/usr/local/bin',
-        require   => File[''],
  }
 }
