@@ -7,15 +7,30 @@ class mysql::server::packages {
   } elsif  $mysql::mysql_distro == "mariadb" {
         $packs = [ "MariaDB-server", "MariaDB-client", "MariaDB-compat" ]
         $mysql_bin = "mysql"
-        $require =  Yumrepo['mysql-repo']
+        case $::osfamily {
+          'RedHat': {
+                $require = Yumrepo['mysql-repo']
+          }
+          'Debian': {
+                $require = Apt::Source['mysql-repo']
+          }
+        }
   } elsif  $mysql::mysql_distro == "percona" {
-        $packs = [ "Percona-Server-server-${mysql::mysql_ver}", "Percona-Server-client-${mysql::mysql_ver}" ]
         $mysql_bin = "mysql"
-        $require = Package["Percona-Server-shared-compat"]
-        package {
-            "Percona-Server-shared-compat":
+        case $::osfamily {
+          'RedHat': {
+            $packs = [ "Percona-Server-server-${mysql::mysql_ver}", "Percona-Server-client-${mysql::mysql_ver}" ]
+            $require = [ Yumrepo['mysql-repo'], Package["Percona-Server-shared-compat"] ]
+            package {
+              "Percona-Server-shared-compat":
                     require =>  Yumrepo['mysql-repo'], 
                     ensure  => "installed";
+            }
+           }
+           'Debian': {
+             $packs = [ "Percona-Server-server-${mysql::mysql_version}", "Percona-Server-client-${mysql::mysql_version}" ]
+             $require = Apt::Source['mysql-repo']
+           }
         }
   }
   
@@ -23,7 +38,7 @@ class mysql::server::packages {
 
   package {
         $packs:
-            		require => $require,
-			        ensure => "installed";
+         	require => $require,
+	        ensure => "installed";
   }
 }
