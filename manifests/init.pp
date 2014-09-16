@@ -1,4 +1,4 @@
-class mysql ($mysql_root_password,$mysql_distro="community", $mysql_version="5.5", $mysql_serverid=undef, $ensure="running", $bootstrap=undef, $galera_version=2,  $mysql_bind_interface="eth0") {
+class mysql ($mysql_root_password=undef,$mysql_old_root_password=undef,$mysql_distro="community", $mysql_version="5.5", $mysql_serverid=undef, $ensure="running", $bootstrap=undef, $galera_version=2,  $mysql_bind_interface="eth0") {
         
         if $mysql::mysql_version == "5.7" {
             info("Your are brave ! Using 5.7 !!")
