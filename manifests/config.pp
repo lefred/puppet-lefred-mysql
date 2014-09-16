@@ -6,7 +6,7 @@ class mysql::config {
  if $root_password != undef {
    case $old_root_password {
      undef   : { $old_pwd = '' }
-     default : { $old_pw = "-p'${old_root_password}'" }
+     default : { $old_pwd = "-p'${old_root_password}'" }
    }
  }
 
