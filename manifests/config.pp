@@ -1,7 +1,7 @@
 class mysql::config {
 
- $root_password = ${mysql::mysql_root_password}
- $old_root_password = ${mysql::mysql_old_root_password}
+ $root_password = $mysql::mysql_root_password
+ $old_root_password = $mysql::mysql_old_root_password
 
  if $root_password != undef {
    case $old_root_password {
