@@ -2,10 +2,11 @@ class mysql::config {
 
  $root_password = mysql::$mysql_root_password
  $old_root_password = mysql::$mysql_old_root_password
+
  if $root_password != undef {
    case $old_root_password {
      undef   : { $old_pwd = '' }
-     default : { $old_pw = "-p'${old_root_password}'"
+     default : { $old_pw = "-p'${old_root_password}'" }
    }
  }
 
@@ -15,4 +16,5 @@ class mysql::config {
         unless    => "mysqladmin -u root -p'${root_password}' status > /dev/null",
         path      => '/usr/local/sbin:/usr/bin:/usr/local/bin',
         require   => File[''],
+ }
 }
