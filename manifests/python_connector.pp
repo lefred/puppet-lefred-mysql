@@ -1,4 +1,4 @@
-Class mysql::python_connector {
+class mysql::python_connector {
  
  
   case $::osfamily {
