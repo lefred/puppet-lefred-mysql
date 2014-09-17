@@ -16,4 +16,10 @@ class mysql::config {
         unless    => "mysqladmin -u root -p'${root_password}' status > /dev/null",
         path      => '/usr/local/sbin:/usr/bin:/usr/local/bin',
  }
+ 
+ file { '/root/.my.cnf':
+     ensure  => present,
+     content => template("mysql/rootmy.cnf.erb"),
+
+ }
 }
