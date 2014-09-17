@@ -17,9 +17,9 @@ class mysql::utilities {
 	package {
         "mysql-utilities":
     	    ensure   => installed,
-			require  => [ YumRepo['mysql-tools-community'], YumRepo['mysql-connectors-community'] ];
+			    require  => [ YumRepo['mysql-tools-community'], YumRepo['mysql-connectors-community'] ];
         #"mysql-utilities-extra":
-    	#    ensure   => installed,
-		#	require  => Package['mysql-utilities'];
+    	  #    ensure   => installed,
+		    #	   require  => Package['mysql-utilities'];
 		}
 }
