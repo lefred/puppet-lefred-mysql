@@ -9,7 +9,7 @@ wsrep_provider=/usr/lib64/libgalera_smm.so
 <% else %>
 wsrep_provider=/usr/lib/libgalera_smm.so
 <% end %>
-wsrep_cluster_address=gcomm://192.168.90.2,192.168.90.3,192.168.90.4
+wsrep_cluster_address=<%= scope.lookupvar('mysql::mysql_wsrep_cluster_address') %>
 wsrep_node_address=<%= scope.lookupvar('mysql::mysql_ip') %>
 wsrep_slave_threads=2
 wsrep_cluster_name=LefredPXC
