@@ -11,6 +11,11 @@ class mysql::cluster::packages {
 		$require = Apt::Source['mysql-repo']
           }
         }
+ 	package {
+        	   $packs:
+                      require => $require,
+                      ensure  => "installed";
+  	}
   } elsif  $mysql::mysql_distro == "percona" {
         $mysql_bin = "mysql"
         case $::osfamily {
@@ -18,14 +23,14 @@ class mysql::cluster::packages {
                 $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "rsync", "qpress" ]
                 $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}", "Percona-Server-shared-compat" ]
                 $require = [ Package[$packs_galera], Yumrepo['epel'] ]
-  		        package {
+  		package {
             	   $packs_galera:
                       require => $require_loc,
                       ensure  => "installed";
-        	       $packs:
+        	   $packs:
                       require => $require,
                       ensure  => "installed";
-  	 	        }
+  	 	}
                	$require_loc = Yumrepo['mysql-repo'] 
           }
           'Debian': {
