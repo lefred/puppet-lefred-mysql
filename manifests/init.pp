@@ -22,5 +22,4 @@ class mysql ($mysql_root_password=undef,$mysql_old_root_password=undef,$mysql_di
         include mysql::repository
         include mysql::config
        
-        $packdevel = "mysql-devel"
 }

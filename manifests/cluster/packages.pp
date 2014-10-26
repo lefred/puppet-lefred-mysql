@@ -22,7 +22,6 @@ class mysql::cluster::packages {
     	  'RedHat': {
                 $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_ver}", "Percona-XtraDB-Cluster-client-${mysql::mysql_ver}", "rsync", "qpress" ]
                 $packs_galera = [ "Percona-XtraDB-Cluster-galera-${mysql::galera_version}", "Percona-Server-shared-compat" ]
-                $mysql::packdevel = "Percona-XtraDB-Cluster-devel-${mysql::mysql_ver}"
                 $require = [ Package[$packs_galera], Yumrepo['epel'] ]
   		package {
             	   $packs_galera:
@@ -37,7 +36,6 @@ class mysql::cluster::packages {
           'Debian': {
                 $packs = [ "Percona-XtraDB-Cluster-server-${mysql::mysql_version}", "Percona-XtraDB-Cluster-client-${mysql::mysql_version}", "rsync", "qpress" ]
                 $packs_galera = "Percona-XtraDB-Cluster-galera-${mysql::galera_version}.x"
-                $mysql::packdevel = "Percona-XtraDB-Cluster-server-devel-${mysql::mysql_ver}"
 		$require = Package[$packs_galera]
 		$require_loc = Apt::Source['mysql-repo']
 
