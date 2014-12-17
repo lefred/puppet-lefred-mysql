@@ -12,6 +12,7 @@ class mysql::python_connector {
   
   package {
     $pack:
-      ensure  => installed;
+      ensure  => installed,
+      require => Class['mysql']
   }
 }
