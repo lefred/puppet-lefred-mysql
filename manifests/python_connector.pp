@@ -13,6 +13,6 @@ class mysql::python_connector {
   package {
     $pack:
       ensure  => installed,
-      require => Class['mysql']
+      require => Class['mysql::config'];
   }
 }
